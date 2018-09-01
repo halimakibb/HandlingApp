@@ -1,0 +1,116 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.master" AutoEventWireup="true" CodeBehind="ListInvoicePertamina.aspx.cs" Inherits="FrancoHandling_App.Pages.ListInvoicePertamina" %>
+
+<%@ Register Assembly="DevExpress.Web.Bootstrap.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+<script type="text/javascript">
+    function OnBtnProcessCallback(s, e) {
+            if (confirm('Apakah invoice ini akan di proses ke Pertamina ?')) {
+                e.processOnServer = true;
+                if (e.isSelected) {
+                    var index = e.visibleIndex;
+                    var key = s.GetRowKey(e.visibleIndex);
+                    gridListInvoice.PerformCallback('Process|' + key);
+                }
+            }
+            else {
+                e.processOnServer = false;
+            }
+    }
+
+    function gridListInvoice_EndCallback(s, e) {
+        if (gridListInvoice.cpRes != null && gridListInvoice.cpRes != "") {
+            if (gridListInvoice.cpRes.includes("Succes")) {
+                Alert("success", "Invoice", gridListInvoice.cpRes);
+                gridListInvoice.Refresh();
+            }
+            else {
+                Alert("error", "Invoice", gridListInvoice.cpRes);
+            }
+            gridListInvoice.cpRes = null;
+        }
+    }
+
+</script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1>Invoice ke Pertamina</h1>
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-md-12">
+            <dx:BootstrapGridView ID="gridListInvoice" ClientInstanceName="gridListInvoice" runat="server" KeyFieldName="Invoice_ID" Width="100%" 
+                AutoGenerateColumns="False" EnableCallBacks="true"
+                OnDataBinding="gridListInvoice_DataBinding"
+                OnCustomCallback="gridListInvoice_CustomCallback"
+                OnCommandButtonInitialize="gridListInvoice_CommandButtonInitialize"
+                OnDetailRowExpandedChanged="gridListInvoice_DetailRowExpandedChanged"
+                ClientSideEvents-EndCallback="gridListInvoice_EndCallback">
+                <Settings ShowHeaderFilterButton="true" ShowGroupPanel="false" />
+                <SettingsSearchPanel Visible="true" ShowApplyButton="true" />
+                <SettingsPager Mode="ShowPager" ></SettingsPager>
+                <SettingsDetail ShowDetailRow="true" AllowOnlyOneMasterRowExpanded="true"/>
+                <SettingsCommandButton SelectButton-Text="Proses" SelectButton-IconCssClass="glyphicon glyphicon-transfer"></SettingsCommandButton>
+                <ClientSideEvents SelectionChanged="OnBtnProcessCallback" />
+                <Columns>                    
+                    <dx:BootstrapGridViewDataColumn FieldName="InvoiceNumber" Caption="Nomor Invoice" />
+                    <dx:BootstrapGridViewDateColumn FieldName="InvoiceDate" Caption="Tanggal Invoice" 
+                        PropertiesDateEdit-DisplayFormatString="dd.MM.yyyy"/>
+                    <dx:BootstrapGridViewDataColumn FieldName="ApproveBy" Visible="false"/>
+                    <dx:BootstrapGridViewDataColumn FieldName="Note" Visible="false"/>
+                    <dx:BootstrapGridViewDataColumn FieldName="StatusDesc" Caption="Status"/>
+                    <dx:BootstrapGridViewDateColumn FieldName="UpdateDate" Caption="Tanggal Update" 
+                        PropertiesDateEdit-DisplayFormatString="dd.MM.yyyy HH:MM:dd"/>
+                    <dx:BootstrapGridViewDataColumn FieldName="UpdateBy" Caption="Nama Update"/>
+                    <dx:BootstrapGridViewCommandColumn Name="cmdGridListInvoice" Caption="Proses to Pertamina" AllowDragDrop="False" ButtonRenderMode="Button" 
+                        ShowSelectButton="true" ShowClearFilterButton="true">
+                    </dx:BootstrapGridViewCommandColumn>
+                </Columns>
+                <Templates>
+                    <DetailRow>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <dx:BootstrapTextBox runat="server" ID="txtInvoiceNumber" ClientInstanceName="txtInvoiceNumber" Caption="Nomor Invoice" ClientEnabled="false" />
+                                <dx:BootstrapTextBox runat="server" ID="txtApproveBy" ClientInstanceName="txtApproveBy" Caption="Penandatangan" ClientEnabled="false" />
+                            </div>
+                            <div class="col-md-6">
+                                <dx:BootstrapDateEdit runat="server" ID="dateInvoice" ClientInstanceName="dateInvoice" Caption="Tanggal Invoice" DisplayFormatString="dd.MM.yyyy" ClientEnabled="false"/>
+                                <dx:BootstrapMemo runat="server" ID="txtNote" ClientInstanceName="txtNote" Caption="Catatan" Rows="3" ClientEnabled="false"></dx:BootstrapMemo>
+                            </div>
+                        </div>
+                        <dx:BootstrapGridView ID="gridInvoiceItem" ClientInstanceName="gridInvoiceItem" runat="server" KeyFieldName="LO_ID" 
+                            AutoGenerateColumns="False" EnableCallBacks="true" 
+                            OnDataBinding="gridInvoiceItem_DataBinding"
+                            OnBeforePerformDataSelect="gridInvoiceItem_BeforePerformDataSelect">
+                            <Settings ShowHeaderFilterButton="false" ShowGroupPanel="false" ShowFooter="true"/>
+                            <SettingsSearchPanel Visible="false" ShowApplyButton="false" />
+                            <SettingsPager Mode="ShowAllRecords"/>
+                            <Columns>                                    
+                                <dx:BootstrapGridViewDataColumn FieldName="NoLO" Caption="Nomor LO"  ReadOnly="true" />
+                                    <dx:BootstrapGridViewDataColumn FieldName="Product_ID" Visible="false"/>
+                                    <dx:BootstrapGridViewDataColumn FieldName="ProductName" Caption="Produk"  ReadOnly="true" />
+                                    <dx:BootstrapGridViewTextColumn FieldName="QuantityVolume" Caption="Kuantitas" ReadOnly="true">
+                                        <PropertiesTextEdit ClientInstanceName="SubTotal" DisplayFormatString="{0:N0} LITER" DisplayFormatInEditMode="true"></PropertiesTextEdit>
+                                    </dx:BootstrapGridViewTextColumn>
+                                    <dx:BootstrapGridViewTextColumn FieldName="PriceUnit" Caption="Harga Satuan" ReadOnly="true" >
+                                        <PropertiesTextEdit ClientInstanceName="SubTotal" DisplayFormatString="IDR {0:N0}" DisplayFormatInEditMode="true"></PropertiesTextEdit>
+                                    </dx:BootstrapGridViewTextColumn>
+                                    <dx:BootstrapGridViewTextColumn FieldName="SubTotal" Caption="Harga SubTotal" ReadOnly="true" >
+                                        <PropertiesTextEdit ClientInstanceName="SubTotal" DisplayFormatString="IDR {0:N0}" DisplayFormatInEditMode="true"></PropertiesTextEdit>
+                                    </dx:BootstrapGridViewTextColumn>
+                            </Columns>
+                            <TotalSummary>
+                                <dx:ASPxSummaryItem FieldName="SubTotal" SummaryType="Sum" />
+                            </TotalSummary>
+                        </dx:BootstrapGridView>
+                    </DetailRow>
+                </Templates>
+            </dx:BootstrapGridView> 
+        </div>
+    </div>
+</div>
+</asp:Content>

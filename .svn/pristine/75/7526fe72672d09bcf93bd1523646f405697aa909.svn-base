@@ -1,0 +1,171 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.Master.cs" Inherits="FrancoHandling_App.Layout" %>
+<%@ Register Assembly="DevExpress.Web.Bootstrap.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+    </title>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet">
+    <link href="Content/site.css" rel="stylesheet">
+    <link href="Content/ol.css" rel="stylesheet" />
+    <link href="Content/toastr.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+    <script src="<%# ResolveUrl("~/Scripts/jquery-1.12.2.min.js")%>" type="text/javascript"></script> 
+    <script src="<%# ResolveUrl("~/Scripts/bootstrap.min.js")%>" type="text/javascript"></script>
+    <script src="<%# ResolveUrl("~/Scripts/site.js")%>" type="text/javascript"></script>
+    <script src="<%# ResolveUrl("~/Scripts/toastr-alert.js")%>" type="text/javascript"></script>
+    <script src="<%# ResolveUrl("~/Scripts/toastr.js")%>" type="text/javascript"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <dx:ASPxLoadingPanel ID="lp" ClientInstanceName="lp" runat="server" HorizontalAlign="Center" VerticalAlign="Middle"></dx:ASPxLoadingPanel>
+    <dx:ASPxLoadingPanel ID="lpModal" ClientInstanceName="lpModal" runat="server" Modal="true" HorizontalAlign="Center" VerticalAlign="Middle"></dx:ASPxLoadingPanel>
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <dx:ASPxPanel ID="TopPanel" runat="server" ClientInstanceName="TopPanel" Width="100%" Collapsible="true">
+                    <SettingsAdaptivity CollapseAtWindowInnerWidth="680" />
+                    <SettingsCollapsing>
+                        <ExpandButton GlyphType="Strips" />
+                    </SettingsCollapsing>
+                    <Styles>
+                        <ExpandBar CssClass="expandBar" />
+                        <ExpandedPanel CssClass="expandedPanel" />
+                    </Styles>
+                    <ExpandBarTemplate>
+                        <%--<div class='title'>
+                            <dx:BootstrapImage runat="server" ID="imgLogopatlog_1" ImageUrl="~/Content/Images/Common/LogoPatLog_H.png"></dx:BootstrapImage>
+                            <p class='small'>Release v.1.0 (Beta Version)</p>
+                        </div>
+                        <div class='title' style="float: right">
+                            <dx:BootstrapImage runat="server" ID="imgLogoApp_1" ImageUrl="~/Content/Images/Common/LogoHandlingApp.png"></dx:BootstrapImage>
+                        </div>--%>
+                    </ExpandBarTemplate>
+                    <PanelCollection>
+                        <dx:PanelContent>
+                            <div class='title'>
+                                <dx:BootstrapImage runat="server" ID="imgLogopatlog" ImageUrl="~/Content/Images/Common/LogoPatLog_H.png"></dx:BootstrapImage>
+                                <%--<p class="small">Release v.1.0 (Beta Version)</p>--%>                               
+                            </div>
+                            <div class='title' style="float:right">
+                                <dx:BootstrapImage runat="server" ID="imgLogoApp" ImageUrl="~/Content/Images/Common/LogoHandlingApp.png"></dx:BootstrapImage>
+                            </div>
+                            <div class="panelContent" style="margin-left:180px; margin-right:120px;">
+                                <%--<div class="pull-right">--%>
+                                    <div class="panelItem">
+                                        <dx:BootstrapMenu ID="NavMenu" runat="server" ShowPopOutImages="true" ClientVisible="false">
+                                            <Items>
+                                                <dx:BootstrapMenuItem Name="home" Text="HOME" NavigateUrl="~/Pages/Default.aspx" IconCssClass="glyphicon glyphicon-home"/>
+                                                <dx:BootstrapMenuItem Name="sp3m" Text="SP3M" ClientVisible="false">
+                                                    <Items>                                                        
+                                                        <dx:BootstrapMenuItem Text="CREATE SP3M" NavigateUrl="~/Pages/InputSP3M.aspx"/>
+                                                        <dx:BootstrapMenuItem Text="LIST SP3M" NavigateUrl="~/Pages/ListSP3M.aspx"/>
+                                                    </Items>
+                                                </dx:BootstrapMenuItem>                                                
+                                                <dx:BootstrapMenuItem Name="sppb" Text="SPPB" ClientVisible="false">
+                                                    <Items>                                                        
+                                                        <dx:BootstrapMenuItem Text="CREATE SPPB" NavigateUrl="~/Pages/InputSPPB.aspx"></dx:BootstrapMenuItem>
+                                                        <dx:BootstrapMenuItem Text="LIST SPPB" NavigateUrl="~/Pages/ListSPPB.aspx"></dx:BootstrapMenuItem>
+                                                    </Items>
+                                                </dx:BootstrapMenuItem>
+                                                <dx:BootstrapMenuItem Name="loading" Text="LOADING" NavigateUrl="~/Pages/InputLO.aspx" ClientVisible="false"/>
+                                                <dx:BootstrapMenuItem Name="unloading" Text="UNLOADING" NavigateUrl="~/Pages/InputUnloading.aspx" ClientVisible="false"/>
+                                                <dx:BootstrapMenuItem Name="invoice" Text="INVOICE" ClientVisible="false">
+                                                    <Items>                                                        
+                                                        <dx:BootstrapMenuItem Text="CREATE INVOICE" NavigateUrl="~/Pages/InputInvoice.aspx"></dx:BootstrapMenuItem>
+                                                        <dx:BootstrapMenuItem Text="LIST INVOICE" NavigateUrl="~/Pages/ListInvoice.aspx"></dx:BootstrapMenuItem>
+                                                        <dx:BootstrapMenuItem Text="LIST INVOICE PERTAMINA" NavigateUrl="~/Pages/ListInvoicePertamina.aspx"></dx:BootstrapMenuItem>
+                                                    </Items>
+                                                </dx:BootstrapMenuItem>
+                                                <dx:BootstrapMenuItem Name="laporan" Text="LAPORAN" NavigateUrl="#" ClientVisible="false"/>
+                                                <dx:BootstrapMenuItem Name="masterdata" Text="MASTER DATA" ClientVisible="false">
+                                                    <Items>
+                                                        <dx:BootstrapMenuItem Text="TBBM/DEPOT" NavigateUrl="~/Pages/MasterData/MasterDataTBBM.aspx"/>
+                                                        <dx:BootstrapMenuItem Text="SPSH (Ship To Party)" NavigateUrl="~/Pages/MasterData/MasterDataSPSH.aspx"/>
+                                                        <dx:BootstrapMenuItem Text="JARAK TBBM-SPSH" NavigateUrl="~/Pages/MasterData/MasterDataJarak.aspx"/>
+                                                        <dx:BootstrapMenuItem Text="TRANSPORTIR" NavigateUrl="~/Pages/MasterData/MasterDataTransportir.aspx"/>
+                                                        <dx:BootstrapMenuItem Text="KENDARAAN" NavigateUrl="~/Pages/MasterData/MasterDataKendaraan.aspx"/>
+                                                        <dx:BootstrapMenuItem Text="DRIVER" NavigateUrl="~/Pages/MasterData/MasterDataDriver.aspx"/>
+                                                        <dx:BootstrapMenuItem Text="USER" NavigateUrl="~/Pages/MasterData/MasterDataUser.aspx"/>
+                                                    </Items>
+                                                </dx:BootstrapMenuItem>
+                                                <dx:BootstrapMenuItem Name="Logout" Text="LOG OUT" ClientVisible="true">
+                                                            <Template>
+                                                                <dx:BootstrapButton ID="btnLogout" runat="server" Text="Logout" ClientVisible="true" CausesValidation="false" UseSubmitBehavior="false"
+                                                                    OnClick="btnLogout_Click">
+                                                                    <CssClasses Icon="glyphicon glyphicon-user" />
+                                                                </dx:BootstrapButton>
+                                                            </Template>
+                                                </dx:BootstrapMenuItem>
+                                            </Items>
+                                        </dx:BootstrapMenu>
+                                    </div>
+                                <%--</div>--%>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </dx:PanelContent>
+                    </PanelCollection>                    
+                </dx:ASPxPanel>       
+            </div>
+        </header>
+        <div class="content">
+            <asp:ContentPlaceHolder runat="server" ID="Content" />
+        </div>
+        <div id="btnBackToTop" class="btnBackToTop hidden">
+            <i class="glyphicon glyphicon-circle-arrow-up"></i>
+        </div>
+        <footer>
+            <div class="footerDown">
+                <div class="container" style="width:100%;">
+                    <p class="col-md-1 text-left small" style="width:50%;">
+                        <b>PT. PATRA LOGISTIK</b><br />Jl. Otista Raya 66<br />Jakarta - 13330 Indonesia
+                    </p>
+                    <p class="col-md-1 text-right small" style="width:50%; vertical-align:text-bottom;">
+                        <br /><%:DateTime.Today.Year.ToString()%> &copy; All Rights Reserved.
+                    </p>
+                    <%--<p><%:DateTime.Today.Year.ToString()%> &copy; All Rights Reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>--%>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <%--<dx:ASPxGlobalEvents runat="server" ClientSideEvents-ControlsInitialized="adjustNavMenu" />--%>
+    
+    <dx:BootstrapPopupControl runat="server" ID="popupMsg" ClientInstanceName="popupMsg" 
+        CloseAction="None" Modal="true" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" 
+        ShowHeader="false" AutoUpdatePosition="true" >
+        <ContentCollection>
+            <dx:ContentControl>
+                <div style="text-align:center">
+                    <dx:ASPxLabel runat="server" id="lblMsg" ClientInstanceName="lblMsg" Font-Bold="true"></dx:ASPxLabel>
+                    <br /><br />
+                    <dx:BootstrapButton runat="server" ID="btnClosePopupMsg" Text="OK" AutoPostBack="false" ClientSideEvents-Click="function(s,e){popupMsg.Hide(); lblMsg.SetText('');}"></dx:BootstrapButton>
+                </div>
+
+            </dx:ContentControl>
+        </ContentCollection>
+    </dx:BootstrapPopupControl>
+    </form>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(window).keydown(function (event) {
+                if ((event.keyCode == 13)) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

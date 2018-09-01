@@ -1,0 +1,547 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using FrancoHandling_Lib;
+using FrancoHandling_Lib.Model;
+using FrancoHandling_Lib.Entity;
+using DevExpress.Web.Bootstrap;
+using System.IO;
+using System.Text;
+using Newtonsoft.Json;
+
+namespace FrancoHandling_App.Pages
+{
+    public partial class InputSP3M : System.Web.UI.Page {
+
+        int SP3M_ID = 0;
+        string NoSP3M = string.Empty;
+        string StatusSP3M = string.Empty;
+        Alert alert = new Alert();
+        MasterDataEntity MasterData = new MasterDataEntity();
+        List<SP3MModel.SP3MProduct> ListSP3M_Item = new List<SP3MModel.SP3MProduct>();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Page.Header.DataBind();
+
+            if (!IsPostBack)
+            {
+                //set autorization page
+                UserProfile.SetAuthorization(new string[] { UserProfile.USER_EKSTERNAL, UserProfile.USER_INTERNAL });
+
+                //set sp3m id and sp3m number
+                NoSP3M = string.Empty;
+                SP3M_ID = string.IsNullOrEmpty((string)Request.QueryString["SP3M_ID"]) ? 0 : Convert.ToInt16(Request.QueryString["SP3M_ID"]);
+                StatusSP3M = string.IsNullOrEmpty((string)Request.QueryString["Status"]) ? string.Empty : Request.QueryString["Status"].ToString().ToUpper();
+
+                //binding sp3m control
+                BindingSP3M(SP3M_ID);
+
+                //set grid product sp3m
+                gvProductSP3M.DataSource = ListProductSP3M(SP3M_ID);
+                gvProductSP3M.DataBind();
+
+                //set sp3m is editable
+                if (StatusSP3M.Contains("SAVED"))
+                {
+                    SetEnabled(true);
+                    SetEnabledButton(UserProfile.Roles, StatusSP3M);
+                    btnClose.ClientVisible = true;
+                    btnCancel.ClientVisible = false;
+                }
+                else
+                {
+                    //new entry
+                    if (SP3M_ID == 0)
+                    {
+                        SetEnabled(true);
+                        SetEnabledButton(UserProfile.Roles, StatusSP3M);
+                    }
+                    else
+                    {
+                        SetEnabled(false);
+                        SetEnabledButton(UserProfile.Roles, StatusSP3M);
+                    }
+                }
+                    
+            }
+        }
+
+        protected void gvProductSP3M_DataBinding(object sender, EventArgs e)
+        {
+            //set variable from query string
+            SP3M_ID = string.IsNullOrEmpty((string)Request.QueryString["SP3M_ID"]) ? 0 : Convert.ToInt16(Request.QueryString["SP3M_ID"]);
+            StatusSP3M = string.IsNullOrEmpty((string)Request.QueryString["Status"]) ? string.Empty : Request.QueryString["Status"].ToString().ToUpper();
+
+            if (SP3M_ID == 0)
+                gvProductSP3M.DataSource = ListProductSP3M(NoSP3M);
+            else
+                gvProductSP3M.DataSource = ListProductSP3M(SP3M_ID);
+        }
+        
+        protected void gvProductSP3M_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)
+        {            
+            //validate data sp3m header
+            if (!ValidateInsertSP3M(txtSP3M_Number.Text, txtForce.Text))
+            {
+                e.Cancel = true;
+                alert.MessageString(Alert.WARNING, "Simpan Produk", "Data SP3M belum diinput, harap input data SP3M terlebih dahulu.", this.Page, GetType());
+                return;
+            }
+            
+            try
+            {
+                //set noSP3M
+                if (SP3M_ID == 0)
+                    NoSP3M = txtSP3M_Number.Text;
+
+                //insert data product
+                string response = DbTransaction.DbToString("sp_AddSP3M_Item", new
+                {
+                    SP3M_ID = SP3M_ID,
+                    NoSP3M = NoSP3M,
+	                product = e.NewValues["ProductName"],
+	                unitcapacity = 1, //only liter
+                    quantityvolume = e.NewValues["QuantityVolume"],
+                    priceunit = e.NewValues["PriceUnit"],
+                    pricetotal = e.NewValues["SubTotal"],
+	                userlogin = UserProfile.Username
+                }, true);
+
+                //refresh grid
+                e.Cancel = true;
+
+                //show notification
+                if (response.Contains("Success"))
+                {
+                    alert.MessageString(Alert.SUCCESS, "Simpan Produk", response, this.Page, GetType());
+                    gvProductSP3M.CancelEdit();
+                }
+                else
+                    alert.MessageString(Alert.WARNING, "Simpan Produk", response, this.Page, GetType());
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, ex.Message, this.Page, GetType());
+            }
+        }
+        
+        protected void gvProductSP3M_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
+        {
+            //ListProductSP3M[gvProduct.EditingRowVisibleIndex].ProductID = (string)e.NewValues["NamaProduk"];
+            //ListProductSP3M[gvProduct.EditingRowVisibleIndex].NamaProduk = (string)e.NewValues["NamaProduk"];
+            //ListProductSP3M[gvProduct.EditingRowVisibleIndex].Kuantum = (float)e.NewValues["Kuantum"];
+            //ListProductSP3M[gvProduct.EditingRowVisibleIndex].HargaSatuan = (float)e.NewValues["HargaSatuan"];
+            //ListProductSP3M[gvProduct.EditingRowVisibleIndex].HargaJumlah = (float)e.NewValues["HargaJumlah"];
+            
+            //e.Cancel = true;
+            //gvProduct.CancelEdit();   
+
+            string Response = string.Empty;
+            try
+            {
+                int SP3MItem_ID = Convert.ToInt16(e.Keys[0]);
+                Response = DbTransaction.DbToString("dbo.sp_DeleteSP3M_Item", new {
+                    SP3M_Items_ID = SP3MItem_ID, 
+                    product = e.NewValues["ProductName"],
+                    unitcapacity = 1,
+                    quantityvolume = e.NewValues["QuantityVolume"],
+                    priceunit =e.NewValues["SubTotal"],
+                    userlogin = UserProfile.Username 
+                }, true);
+
+                e.Cancel = true;
+                gvProductSP3M.CancelEdit();
+
+                if (Response.Contains("Succcess"))
+                    alert.MessageString(Alert.SUCCESS, "Edit Product", Response, this.Page, GetType());
+                else
+                    alert.MessageString(Alert.WARNING, "Edit Product", Response, this.Page, GetType());
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Edit Product", ex.Message, this.Page, GetType());
+            }
+        
+        }
+
+        protected void gvProductSP3M_RowDeleting(object sender, DevExpress.Web.Data.ASPxDataDeletingEventArgs e)
+        {
+            //ListProductSP3M.Remove(ListProductSP3M.FirstOrDefault(x => x.ProductID == e.Keys[0].ToString()));
+            //e.Cancel = true;
+
+            string Response = string.Empty;
+            try
+            {
+                int SP3MItem_ID = Convert.ToInt16(e.Keys[0]);
+                Response = DbTransaction.DbToString("dbo.sp_DeleteSP3M_Item", new { SP3M_Items_ID = SP3MItem_ID, userlogin = UserProfile.Username }, true);
+
+                e.Cancel = true;
+                gvProductSP3M.CancelEdit();
+
+                if(Response.Contains("Succcess"))
+                    alert.MessageString(Alert.SUCCESS, "Delete Product", Response, this.Page, GetType());
+                else
+                    alert.MessageString(Alert.WARNING, "Delete Product", Response, this.Page, GetType());
+            }
+            catch(Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Delete Product", ex.Message, this.Page, GetType());
+            }
+        
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSP3M_Number.Text)
+                || string.IsNullOrEmpty(txtForce.Text))
+            {
+                alert.MessageString(Alert.WARNING, "Simpan SP3M", "Please Input Mandatory Fields", this.Page, GetType());
+                return;
+            }
+
+            if (gvProductSP3M.IsEditing == true)
+            {
+                alert.MessageString(Alert.WARNING, "Simpan SP3M", "Simpan/ Batalkan Data Produk yang sedang diedit", this.Page, GetType());
+                return;
+            }
+
+            string response = string.Empty;
+            try
+            {
+                //set variable from query string
+                SP3M_ID = string.IsNullOrEmpty((string)Request.QueryString["SP3M_ID"]) ? 0 : Convert.ToInt16(Request.QueryString["SP3M_ID"]);
+                StatusSP3M = string.IsNullOrEmpty((string)Request.QueryString["Status"]) ? string.Empty : Request.QueryString["Status"].ToString().ToUpper();
+
+                if (SP3M_ID > 0 && StatusSP3M.Contains("SAVED"))
+                {
+                    //update sp3m header
+                    response = DbTransaction.DbToString("dbo.sp_EditSP3M_Header", new
+                    {
+                        SP3M_ID = SP3M_ID,
+                        nosp3m = txtSP3M_Number.Text.Trim(),
+                        force = txtForce.Text,
+                        unity = txtUnity.Text,
+                        nosa = txtSA_Number.Text, //string.IsNullOrEmpty(txtSA_Number.Text) ? null : Convert.ToDateTime(txtSA_Number.Text),
+                        sadate = dateSA_Date.Text,
+                        nosp2m = txtSP2M_Number.Text,
+                        sp2mdate = dateSP2M_Date.Text,
+                        note = txtNote.Text,
+                        sp3mdate = dateSP3M_Date.Text,
+                        sp3mapprove = txtApproval.Text,
+                        userlogin = UserProfile.Username
+                    }, true);
+                }
+                else
+                {
+                    //save sp3m header
+                    response = DbTransaction.DbToString("dbo.sp_AddSP3M_Header", new
+                    {
+                        nosp3m = txtSP3M_Number.Text.Trim(),
+                        force = txtForce.Text,
+                        unity = txtUnity.Text,
+                        nosa = txtSA_Number.Text, //string.IsNullOrEmpty(txtSA_Number.Text) ? null : Convert.ToDateTime(txtSA_Number.Text),
+                        sadate = dateSA_Date.Text,
+                        nosp2m = txtSP2M_Number.Text,
+                        sp2mdate = dateSP2M_Date.Text,
+                        note = txtNote.Text,
+                        sp3mdate = dateSP3M_Date.Text,
+                        sp3mapprove = txtApproval.Text,
+                        userlogin = UserProfile.Username
+                    }, true);
+                }
+                //show notification
+                if (response.Contains("Success"))
+                    alert.MessageString(Alert.SUCCESS, "Simpan SP3M", response, this.Page, GetType());
+                else
+                    alert.MessageString(Alert.WARNING, "Simpan SP3M", response, this.Page, GetType());
+
+                //refresh grid
+                gvProductSP3M.DataBind();
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Simpan SP3M", ex.Message, this.Page, GetType());
+            }
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            string Response = string.Empty;
+            try
+            {
+                //set sp3m id
+                //set variable from query string
+                SP3M_ID = string.IsNullOrEmpty((string)Request.QueryString["SP3M_ID"]) ? 0 : Convert.ToInt16(Request.QueryString["SP3M_ID"]);
+
+                Response = DbTransaction.DbToString("dbo.sp_SubmitSP3M", new { 
+                    SP3M_ID = SP3M_ID, 
+                    nosp3m = txtSP3M_Number.Text.Trim(),
+                    userlogin = UserProfile.Username 
+                }, true);
+
+                if (Response.Contains("Success"))
+                {
+                    alert.MessageString(Alert.SUCCESS, "Submit SP3M", Response, this.Page, GetType());
+                    SetEnabled(false);
+                    SetEnabledButton(UserProfile.Roles, StatusSP3M);
+
+                    //approve when user is internal
+                    foreach (MasterDataModel.MasterDataRole role in UserProfile.Roles)
+                    {
+                        if (role.RoleName == UserProfile.USER_INTERNAL)
+                        {
+                            Response = DbTransaction.DbToString("dbo.sp_ApproveSP3M", new
+                            {
+                                SP3M_ID = SP3M_ID,
+                                nosp3m = txtSP3M_Number.Text.Trim(),
+                                userlogin = UserProfile.Username
+                            }, true);
+
+                            if (Response.Contains("Success"))
+                            {
+                                alert.MessageString(Alert.SUCCESS, "Approve SP3M", Response, this.Page, GetType());
+                                SetEnabled(false);
+                                SetEnabledButton(UserProfile.Roles, StatusSP3M);
+                            }
+                            else
+                                alert.MessageString(Alert.WARNING, "Approve SP3M", Response, this.Page, GetType());
+                        }
+
+                    }
+                }
+                else
+                    alert.MessageString(Alert.WARNING, "Submit SP3M", Response, this.Page, GetType());   
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Submit SP3M", ex.Message, this.Page, GetType());
+            }
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/ListSP3M.aspx", false);
+        }
+        
+        protected void btnApprove_Click(object sender, EventArgs e)
+        {
+            string Response = string.Empty;
+            try
+            {
+                //set sp3m id
+                //set variable from query string
+                SP3M_ID = string.IsNullOrEmpty((string)Request.QueryString["SP3M_ID"]) ? 0 : Convert.ToInt16(Request.QueryString["SP3M_ID"]);
+
+                Response = DbTransaction.DbToString("dbo.sp_ApproveSP3M", new
+                {
+                    SP3M_ID = SP3M_ID,
+                    nosp3m = txtSP3M_Number.Text.Trim(),
+                    userlogin = UserProfile.Username
+                }, true);
+
+                if (Response.Contains("Success"))
+                {
+                    alert.MessageString(Alert.SUCCESS, "Approve SP3M", Response, this.Page, GetType());
+                    SetEnabled(false);
+                    SetEnabledButton(UserProfile.Roles, StatusSP3M);
+                }
+                else
+                    alert.MessageString(Alert.WARNING, "Approve SP3M", Response, this.Page, GetType());
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Approve SP3M", ex.Message, this.Page, GetType());
+            }
+        }
+
+        protected void btnClarify_Click(object sender, EventArgs e)
+        {
+            string Response = string.Empty;
+            try
+            {
+                //set sp3m id
+                //set variable from query string
+                SP3M_ID = string.IsNullOrEmpty((string)Request.QueryString["SP3M_ID"]) ? 0 : Convert.ToInt16(Request.QueryString["SP3M_ID"]);
+
+                Response = DbTransaction.DbToString("dbo.sp_ClarifySP3M", new
+                {
+                    SP3M_ID = SP3M_ID,
+                    nosp3m = txtSP3M_Number.Text.Trim(),
+                    userlogin = UserProfile.Username
+                }, true);
+
+                if (Response.Contains("Success"))
+                {
+                    alert.MessageString(Alert.SUCCESS, "Clarify SP3M", Response, this.Page, GetType());
+                    SetEnabled(false);
+                    SetEnabledButton(UserProfile.Roles, StatusSP3M);
+                }
+                else
+                    alert.MessageString(Alert.WARNING, "Clarify SP3M", Response, this.Page, GetType());
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Clarify SP3M", ex.Message, this.Page, GetType());
+            }
+        }
+
+        protected void btnReject_Click(object sender, EventArgs e)
+        {
+
+            string Response = string.Empty;
+            try
+            {
+                //set sp3m id
+                //set variable from query string
+                SP3M_ID = string.IsNullOrEmpty((string)Request.QueryString["SP3M_ID"]) ? 0 : Convert.ToInt16(Request.QueryString["SP3M_ID"]);
+
+                Response = DbTransaction.DbToString("dbo.sp_RejectSP3M", new
+                {
+                    SP3M_ID = SP3M_ID,
+                    nosp3m = txtSP3M_Number.Text.Trim(),
+                    userlogin = UserProfile.Username
+                }, true);
+
+                if (Response.Contains("Success"))
+                {
+                    alert.MessageString(Alert.SUCCESS, "Reject SP3M", Response, this.Page, GetType());
+                    SetEnabled(false);
+                    SetEnabledButton(UserProfile.Roles, StatusSP3M);
+                }
+                else
+                    alert.MessageString(Alert.WARNING, "Reject SP3M", Response, this.Page, GetType());
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Reject SP3M", ex.Message, this.Page, GetType());
+            }
+        }
+
+
+        protected List<SP3MModel.SP3MProduct> ListProductSP3M(int SP3M_ID)
+        {
+            return DbTransaction.DbToList<SP3MModel.SP3MProduct>("dbo.sp_GetSP3M_Items_ByIDSP3M", new { SP3M_ID_PK = SP3M_ID }, true);
+        }
+
+        protected List<SP3MModel.SP3MProduct> ListProductSP3M(string NoSP3M)
+        {
+            return DbTransaction.DbToList<SP3MModel.SP3MProduct>("dbo.sp_GetSP3M_Items_ByNoSP3M", new { NoSP3M = NoSP3M }, true);
+        }
+        
+        protected List<SP3MModel.SP3M> ListSP3M(int SP3M_ID)
+        {
+            return DbTransaction.DbToList<SP3MModel.SP3M>("dbo.sp_GetSP3M_ByIDSP3M", new { SP3M_ID = SP3M_ID }, true);
+        }
+
+        protected void BindingSP3M(int SP3M_ID)
+        {
+            List<SP3MModel.SP3M> List_SP3M = new List<SP3MModel.SP3M>();
+            List_SP3M = ListSP3M(SP3M_ID);
+            if(List_SP3M.Count > 0)
+            {
+                txtSP3M_Number.Text = List_SP3M[0].NoSP3M;
+                txtForce.Text = List_SP3M[0].Force;
+                txtUnity.Text = List_SP3M[0].Unity;
+                txtApproval.Text = List_SP3M[0].SP3M_Approve;
+                txtSA_Number.Text = List_SP3M[0].NoSA;
+                txtSP2M_Number.Text = List_SP3M[0].NoSP2M;
+                txtNote.Text = List_SP3M[0].Note;
+
+                if (List_SP3M[0].SP3M_Date != DateTime.Parse("1/1/1900"))
+                    dateSP3M_Date.Value = List_SP3M[0].SP3M_Date;
+                else
+                    dateSP3M_Date.Value = null;
+
+                if (List_SP3M[0].SA_Date != DateTime.Parse("1/1/1900"))
+                    dateSA_Date.Value = List_SP3M[0].SA_Date;
+                else
+                    dateSA_Date.Value = null;
+
+                if (List_SP3M[0].SP2M_Date != DateTime.Parse("1/1/1900"))
+                    dateSP2M_Date.Value = List_SP3M[0].SP2M_Date;
+                else
+                    dateSP2M_Date.Value = null;
+            }
+        }
+
+        protected bool ValidateInsertSP3M(string sp3mnumber, string force)
+        {
+            bool validate = true;
+            if (string.IsNullOrEmpty(sp3mnumber) || string.IsNullOrEmpty(force))
+                validate = false;
+
+            return validate;
+        }
+
+        protected void SetEnabled(bool Enable)
+        {
+            if (Enable)
+            {
+                txtSP3M_Number.ClientEnabled = true;
+                dateSP3M_Date.ClientEnabled = true;
+                txtForce.ClientEnabled = true;
+                txtUnity.ClientEnabled = true;
+                txtSA_Number.ClientEnabled = true;
+                dateSA_Date.ClientEnabled = true;
+                txtSP2M_Number.ClientEnabled = true;
+                dateSP2M_Date.ClientEnabled = true;
+                txtApproval.ClientEnabled = true;
+                txtNote.ClientEnabled = true;
+                gvProductSP3M.Enabled = true;
+                gvProductSP3M.Columns["CommandColumnProduct"].Visible = true;
+                btnSave.ClientVisible = true;
+                btnAdd.ClientVisible = true;
+                btnSubmit.ClientVisible = true;
+                btnCancel.ClientVisible = true;
+                btnClose.ClientVisible = false;
+            }
+            else
+            {
+                txtSP3M_Number.ClientEnabled = false;
+                dateSP3M_Date.ClientEnabled = false;
+                txtForce.ClientEnabled = false;
+                txtUnity.ClientEnabled = false;
+                txtSA_Number.ClientEnabled = false;
+                dateSA_Date.ClientEnabled = false;
+                txtSP2M_Number.ClientEnabled = false;
+                dateSP2M_Date.ClientEnabled = false;
+                txtApproval.ClientEnabled = false;
+                txtNote.ClientEnabled = false;
+                gvProductSP3M.Enabled = false;
+                gvProductSP3M.Columns["CommandColumnProduct"].Visible = false;
+                btnSave.ClientVisible = false;
+                btnAdd.ClientVisible = false;
+                btnSubmit.ClientVisible = false;
+                btnCancel.ClientVisible = false;
+                btnClose.ClientVisible = true;
+            }
+        }
+
+        protected void SetEnabledButton(List<MasterDataModel.MasterDataRole> Roles, string Status)
+        {
+            foreach (MasterDataModel.MasterDataRole role in Roles)
+            {
+                if (role.RoleName == UserProfile.USER_INTERNAL && Status.Contains("SUBMIT"))
+                {
+                    btnApprove.ClientVisible = true;
+                    btnClarify.ClientVisible = true;
+                    btnReject.ClientVisible = true;
+                    return;
+                }
+                else
+                {
+                    btnApprove.ClientVisible = false;
+                    btnClarify.ClientVisible = false;
+                    btnReject.ClientVisible = false;
+                }
+            }
+        }
+
+               
+    }
+}

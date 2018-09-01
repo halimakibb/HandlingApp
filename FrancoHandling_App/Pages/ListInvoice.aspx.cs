@@ -1,0 +1,104 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using FrancoHandling_Lib;
+using FrancoHandling_Lib.Model;
+using FrancoHandling_Lib.Entity;
+using DevExpress.Web;
+using DevExpress.Web.Bootstrap;
+
+namespace FrancoHandling_App.Pages
+{
+    public partial class ListInvoice : System.Web.UI.Page
+    {
+        string ResponseQuery = string.Empty;
+        Alert alert = new Alert();
+        InvoiceEntity GetDataInvoice = new InvoiceEntity();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Page.Header.DataBind();
+
+            if (!Page.IsPostBack)
+            {
+                //set autorization page
+                UserProfile.SetAuthorization(new string[] { UserProfile.USER_INTERNAL });
+
+                //ser gridview invoice header
+                gridListInvoice.DataBind();
+            }
+        }
+
+        protected void gridListInvoice_DataBinding(object sender, EventArgs e)
+        {
+            try
+            {
+                gridListInvoice.DataSource = GetDataInvoice.GetInvoice_Header();
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, ex.Message, Page, GetType());
+            }
+        }
+
+        protected void gridListInvoice_RowDeleting(object sender, DevExpress.Web.Data.ASPxDataDeletingEventArgs e)
+        {            
+            //set invoice id
+            int Invoice_ID = Convert.ToInt32(e.Keys[0]);
+            try
+            {
+                //delete invoice
+                ResponseQuery = DbTransaction.DbToString("dbo.sp_DeleteInvoice", new { Invoice_ID = Invoice_ID, userlogin = UserProfile.Username }, true);
+
+                //refresh gridview
+                e.Cancel = true;
+                gridListInvoice.DataBind();
+
+                //show message
+                if (ResponseQuery.Contains("Success"))
+                    alert.MessageString(Alert.SUCCESS, "Delete Invoice", ResponseQuery, this.Page, GetType());
+                else
+                    alert.MessageString(Alert.WARNING, "Delete Invoice", ResponseQuery, this.Page, GetType());
+
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Delete Invoice", ex.Message, this.Page, GetType());
+            }
+        }
+
+        protected void gridListInvoice_SelectionChanged(object sender, EventArgs e)
+        {
+            BootstrapGridView grid = sender as BootstrapGridView;
+            for (int i = 0; i < grid.VisibleRowCount; i++) // Loop through selected rows 
+            {
+                if (grid.Selection.IsRowSelected(i)) // do whatever you need to do with selected row values
+                {
+                    // now use pre-initialized List<object> selectedList to save 
+                    string key = grid.GetRowValues(i, "Invoice_ID").ToString();
+                    string InvoiceNumber = grid.GetRowValues(i, "InvoiceNumber").ToString();
+                    string status = grid.GetRowValues(i, "StatusDesc").ToString();
+                    ASPxWebControl.RedirectOnCallback(string.Format("~/Pages/InputInvoice.aspx?InvoiceType=0&InvoiceNumber={0}&Status={1}", InvoiceNumber, status));
+                }
+            }
+        }
+
+        protected void gridListInvoice_CommandButtonInitialize(object sender, DevExpress.Web.Bootstrap.BootstrapGridViewCommandButtonEventArgs e)
+        {
+            if (e.VisibleIndex == -1)
+                return;
+
+            if (e.ButtonType == ColumnCommandButtonType.Delete)
+                e.Visible = DeleteButtonVisibleCriteria((ASPxGridView)sender, e.VisibleIndex);
+        }
+
+        private bool DeleteButtonVisibleCriteria(ASPxGridView grid, int visibleIndex)
+        {
+            object row = grid.GetRow(visibleIndex);
+            return ((InvoiceModel.InvoiceHeader)(row)).StatusDesc.ToString().ToUpper().Contains("SAVE");
+        }
+    }
+}

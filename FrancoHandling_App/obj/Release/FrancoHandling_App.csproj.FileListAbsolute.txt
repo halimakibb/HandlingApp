@@ -1,0 +1,170 @@
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_App.dll.config
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_App.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_App.pdb
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\Dapper.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Data.v17.1.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Office.v17.1.Core.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Printing.v17.1.Core.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.RichEdit.v17.1.Core.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.ASPxThemes.v17.1.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.Bootstrap.v17.1.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.Resources.v17.1.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.v17.1.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_Lib.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\Newtonsoft.Json.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Pdf.v17.1.Core.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_Lib.pdb
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\Dapper.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Data.v17.1.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Printing.v17.1.Core.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Office.v17.1.Core.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.RichEdit.v17.1.Core.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.v17.1.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\Newtonsoft.Json.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Pdf.v17.1.Core.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Data.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Data.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Data.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Data.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Printing.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Printing.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Printing.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Printing.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Office.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Office.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Office.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Office.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.RichEdit.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.RichEdit.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.RichEdit.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.RichEdit.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Web.Resources.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Web.Resources.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Web.Resources.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Web.Resources.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Web.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Web.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Web.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Web.v17.1.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Pdf.v17.1.Core.resources.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.csprojResolveAssemblyReference.cache
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.dll.licenses
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.csproj.CoreCompileInputs.cache
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.pdb
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.Report.xReportOAT.resources
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.csproj.GenerateResource.Cache
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_App.dll.config
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_App.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_App.pdb
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\Dapper.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Charts.v17.1.Core.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.CodeParser.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Data.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.DataAccess.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Office.v17.1.Core.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Pdf.v17.1.Core.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.PivotGrid.v17.1.Core.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Printing.v17.1.Core.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.RichEdit.v17.1.Core.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.RichEdit.v17.1.Export.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Sparkline.v17.1.Core.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.ASPxThemes.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.Bootstrap.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.Resources.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Xpo.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.XtraCharts.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.XtraGauges.v17.1.Core.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.XtraReports.v17.1.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.XtraReports.v17.1.Web.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_Lib.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\Newtonsoft.Json.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\FrancoHandling_Lib.pdb
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\Dapper.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Data.v17.1.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.DataAccess.v17.1.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Pdf.v17.1.Core.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.PivotGrid.v17.1.Core.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Printing.v17.1.Core.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Office.v17.1.Core.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.RichEdit.v17.1.Core.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Sparkline.v17.1.Core.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Web.v17.1.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.Xpo.v17.1.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.XtraCharts.v17.1.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.XtraGauges.v17.1.Core.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.XtraReports.v17.1.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\DevExpress.XtraReports.v17.1.Web.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\Newtonsoft.Json.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Data.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Data.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Data.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Data.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.DataAccess.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.DataAccess.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.DataAccess.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.DataAccess.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Pdf.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Pdf.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Pdf.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Pdf.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.PivotGrid.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.PivotGrid.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.PivotGrid.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.PivotGrid.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Printing.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Printing.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Printing.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Printing.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Office.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Office.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Office.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Office.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.RichEdit.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.RichEdit.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.RichEdit.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.RichEdit.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Sparkline.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Sparkline.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Sparkline.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Sparkline.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Web.Resources.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Web.Resources.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Web.Resources.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Web.Resources.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Web.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Web.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Web.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Web.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.Xpo.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.Xpo.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.Xpo.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.Xpo.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.XtraCharts.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.XtraCharts.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.XtraCharts.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.XtraCharts.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.XtraGauges.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.XtraGauges.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.XtraGauges.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.XtraGauges.v17.1.Core.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.XtraReports.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.XtraReports.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.XtraReports.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.XtraReports.v17.1.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\de\DevExpress.XtraReports.v17.1.Web.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\es\DevExpress.XtraReports.v17.1.Web.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ja\DevExpress.XtraReports.v17.1.Web.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\bin\ru\DevExpress.XtraReports.v17.1.Web.resources.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.pdb
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.Report.xReportHandlingFee.resources
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\xReportInvoice.resources
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\xReportRealization.resources
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.csprojAssemblyReference.cache
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.csproj.CoreCompileInputs.cache
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_App\obj\Release\FrancoHandling_App.csproj.CopyComplete

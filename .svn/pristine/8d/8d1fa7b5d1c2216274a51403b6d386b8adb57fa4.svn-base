@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FrancoHandling_Lib.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EncryptionKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cGVydGFtaW5h</Value>
+    </Setting>
+    <Setting Name="EncryptionIV" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cGF0cmFsb2dpc3Rpaw==</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,27 @@
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\bin\Debug\FrancoHandling_Lib.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\bin\Debug\FrancoHandling_Lib.pdb
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\bin\Debug\Dapper.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\bin\Debug\Newtonsoft.Json.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\bin\Debug\Dapper.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\bin\Debug\Newtonsoft.Json.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.pdb
+D:\PATRA LOGISTIC\PatLog Solution Project\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.csprojResolveAssemblyReference.cache
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\FrancoHandling_Lib.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\FrancoHandling_Lib.pdb
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\Dapper.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\Newtonsoft.Json.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\Dapper.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\Newtonsoft.Json.xml
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.dll
+D:\PATRA LOGISTIC\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.pdb
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\FrancoHandling_Lib.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\FrancoHandling_Lib.pdb
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\Dapper.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\Newtonsoft.Json.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\Dapper.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\bin\Debug\Newtonsoft.Json.xml
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.csprojResolveAssemblyReference.cache
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.csproj.CoreCompileInputs.cache
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.dll
+C:\Users\habibmalik\Documents\Handling\Handling-20180419T094103Z-001\Handling\PatLog Solution Project\HandlingApp\FrancoHandling_Lib\obj\Debug\FrancoHandling_Lib.pdb

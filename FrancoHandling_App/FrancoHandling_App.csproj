@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{60D5B385-9BA4-4DDF-9C63-0124AB39EE9E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FrancoHandling_App</RootNamespace>
+    <AssemblyName>FrancoHandling_App</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.1.Export, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.Bootstrap.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.Resources.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.1.Web, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\BlogPosts.xml" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Blog\image0.png" />
+    <Content Include="Content\Images\Blog\image1.png" />
+    <Content Include="Content\Images\Blog\image2.png" />
+    <Content Include="Content\Images\Blog\image3.png" />
+    <Content Include="Content\Images\Common\AddPhoto.png" />
+    <Content Include="Content\Images\Common\error.png" />
+    <Content Include="Content\Images\Common\LogoHandlingApp.png" />
+    <Content Include="Content\Images\Common\LogoPatLog_H.png" />
+    <Content Include="Content\Images\Common\NoPhoto.png" />
+    <Content Include="Content\Images\Common\unauthorized.png" />
+    <Content Include="Content\Images\Components\1.jpg" />
+    <Content Include="Content\Images\Components\2.jpg" />
+    <Content Include="Content\Images\Components\3.jpg" />
+    <Content Include="Content\Images\Components\4.jpg" />
+    <Content Include="Content\Images\Components\5.jpg" />
+    <Content Include="Content\Images\Customers\GaryRubio.jpg" />
+    <Content Include="Content\Images\Customers\HeidiLopez.jpg" />
+    <Content Include="Content\Images\Customers\NathanBryant.jpg" />
+    <Content Include="Content\Images\Customers\RafaelRaje.jpg" />
+    <Content Include="Content\ol.css" />
+    <Content Include="Content\site.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Pages\BlogPost.aspx" />
+    <Content Include="Pages\BlogTimeline.aspx" />
+    <Content Include="Pages\Contacts.aspx" />
+    <Content Include="Pages\Default.aspx" />
+    <Content Include="Pages\ErrorPage\ErrorPage.aspx" />
+    <Content Include="Pages\ErrorPage\SessionExpired.aspx" />
+    <Content Include="Pages\Home.aspx" />
+    <Content Include="Pages\InputInvoice.aspx" />
+    <Content Include="Pages\InputUnloading.aspx" />
+    <Content Include="Pages\InputSP3M.aspx" />
+    <Content Include="Pages\InputSPPB.aspx" />
+    <Content Include="Pages\InputLO.aspx" />
+    <Content Include="Pages\ListInvoice.aspx" />
+    <Content Include="Pages\ListInvoicePertamina.aspx" />
+    <Content Include="Pages\ListSP3M.aspx" />
+    <Content Include="Pages\ListSPPB.aspx" />
+    <Content Include="Pages\MasterData\MasterDataDriver.aspx" />
+    <Content Include="Pages\MasterData\MasterDataJarak.aspx" />
+    <Content Include="Pages\MasterData\MasterDataTBBM.aspx" />
+    <Content Include="Pages\MasterData\MasterDataSPSH.aspx" />
+    <Content Include="Pages\MasterData\MasterDataKendaraan.aspx" />
+    <Content Include="Pages\MasterData\MasterDataTransportir.aspx" />
+    <Content Include="Pages\MasterData\MasterDataUser.aspx" />
+    <Content Include="Pages\ErrorPage\Unauthorized.aspx" />
+    <Content Include="Pages\PrintInvoiceReport.aspx" />
+    <Content Include="Pages\PrintRealizationReport.aspx" />
+    <Content Include="Pages\ReportHandlingFee.aspx" />
+    <Content Include="Pages\ReportOAT.aspx" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.12.2.min.js" />
+    <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\toastr-alert.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="UserControls\AddCommentForm.ascx" />
+    <Content Include="UserControls\BlogNavigation.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Layout.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UserControls\Login.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\BlogPosts.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Layout.master.cs">
+      <DependentUpon>Layout.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layout.master.designer.cs">
+      <DependentUpon>Layout.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BlogPost.aspx.cs">
+      <DependentUpon>BlogPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BlogPost.aspx.designer.cs">
+      <DependentUpon>BlogPost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BlogTimeline.aspx.cs">
+      <DependentUpon>BlogTimeline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BlogTimeline.aspx.designer.cs">
+      <DependentUpon>BlogTimeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Contacts.aspx.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Contacts.aspx.designer.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorPage\ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ErrorPage\ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorPage\SessionExpired.aspx.cs">
+      <DependentUpon>SessionExpired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ErrorPage\SessionExpired.aspx.designer.cs">
+      <DependentUpon>SessionExpired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InputInvoice.aspx.cs">
+      <DependentUpon>InputInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\InputInvoice.aspx.designer.cs">
+      <DependentUpon>InputInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InputUnloading.aspx.cs">
+      <DependentUpon>InputUnloading.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\InputUnloading.aspx.designer.cs">
+      <DependentUpon>InputUnloading.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InputSP3M.aspx.cs">
+      <DependentUpon>InputSP3M.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\InputSP3M.aspx.designer.cs">
+      <DependentUpon>InputSP3M.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InputSPPB.aspx.cs">
+      <DependentUpon>InputSPPB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\InputSPPB.aspx.designer.cs">
+      <DependentUpon>InputSPPB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InputLO.aspx.cs">
+      <DependentUpon>InputLO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\InputLO.aspx.designer.cs">
+      <DependentUpon>InputLO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListInvoice.aspx.cs">
+      <DependentUpon>ListInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ListInvoice.aspx.designer.cs">
+      <DependentUpon>ListInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListInvoicePertamina.aspx.cs">
+      <DependentUpon>ListInvoicePertamina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ListInvoicePertamina.aspx.designer.cs">
+      <DependentUpon>ListInvoicePertamina.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListSP3M.aspx.cs">
+      <DependentUpon>ListSP3M.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ListSP3M.aspx.designer.cs">
+      <DependentUpon>ListSP3M.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListSPPB.aspx.cs">
+      <DependentUpon>ListSPPB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ListSPPB.aspx.designer.cs">
+      <DependentUpon>ListSPPB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataDriver.aspx.cs">
+      <DependentUpon>MasterDataDriver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataDriver.aspx.designer.cs">
+      <DependentUpon>MasterDataDriver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataJarak.aspx.cs">
+      <DependentUpon>MasterDataJarak.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataJarak.aspx.designer.cs">
+      <DependentUpon>MasterDataJarak.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataTBBM.aspx.cs">
+      <DependentUpon>MasterDataTBBM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataTBBM.aspx.designer.cs">
+      <DependentUpon>MasterDataTBBM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataSPSH.aspx.cs">
+      <DependentUpon>MasterDataSPSH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataSPSH.aspx.designer.cs">
+      <DependentUpon>MasterDataSPSH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataKendaraan.aspx.cs">
+      <DependentUpon>MasterDataKendaraan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataKendaraan.aspx.designer.cs">
+      <DependentUpon>MasterDataKendaraan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataTransportir.aspx.cs">
+      <DependentUpon>MasterDataTransportir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataTransportir.aspx.designer.cs">
+      <DependentUpon>MasterDataTransportir.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataUser.aspx.cs">
+      <DependentUpon>MasterDataUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MasterData\MasterDataUser.aspx.designer.cs">
+      <DependentUpon>MasterDataUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorPage\Unauthorized.aspx.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ErrorPage\Unauthorized.aspx.designer.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PrintInvoiceReport.aspx.cs">
+      <DependentUpon>PrintInvoiceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PrintInvoiceReport.aspx.designer.cs">
+      <DependentUpon>PrintInvoiceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PrintRealizationReport.aspx.cs">
+      <DependentUpon>PrintRealizationReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PrintRealizationReport.aspx.designer.cs">
+      <DependentUpon>PrintRealizationReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ReportHandlingFee.aspx.cs">
+      <DependentUpon>ReportHandlingFee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ReportHandlingFee.aspx.designer.cs">
+      <DependentUpon>ReportHandlingFee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ReportOAT.aspx.cs">
+      <DependentUpon>ReportOAT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ReportOAT.aspx.designer.cs">
+      <DependentUpon>ReportOAT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Report\xReportHandlingFee.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\xReportHandlingFee.Designer.cs">
+      <DependentUpon>xReportHandlingFee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\xReportInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\xReportOAT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\xReportOAT.Designer.cs">
+      <DependentUpon>xReportOAT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\xReportRealization.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\AddCommentForm.ascx.cs">
+      <DependentUpon>AddCommentForm.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\AddCommentForm.ascx.designer.cs">
+      <DependentUpon>AddCommentForm.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BlogNavigation.ascx.cs">
+      <DependentUpon>BlogNavigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\BlogNavigation.ascx.designer.cs">
+      <DependentUpon>BlogNavigation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Login.ascx.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Login.ascx.designer.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FrancoHandling_Lib\FrancoHandling_Lib.csproj">
+      <Project>{f2c10ae0-ab39-4f8a-ac45-5f95cffc138f}</Project>
+      <Name>FrancoHandling_Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Report\xReportHandlingFee.resx">
+      <DependentUpon>xReportHandlingFee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\xReportInvoice.resx">
+      <DependentUpon>xReportInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\xReportOAT.resx">
+      <DependentUpon>xReportOAT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\xReportRealization.resx">
+      <DependentUpon>xReportRealization.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6372</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6372/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

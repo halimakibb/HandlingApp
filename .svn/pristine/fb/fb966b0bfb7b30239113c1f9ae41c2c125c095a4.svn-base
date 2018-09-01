@@ -1,0 +1,411 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using FrancoHandling_Lib;
+using FrancoHandling_Lib.Model;
+using FrancoHandling_Lib.Entity;
+using DevExpress.Web.Bootstrap;
+using DevExpress.Web;
+
+namespace FrancoHandling_App.Pages
+{
+    public partial class InputInvoice : System.Web.UI.Page
+    {
+        Alert alert = new Alert();
+        string ResponseQuery = string.Empty;
+        List<InvoiceModel.InvoiceHeader> ListInvoice= new List<InvoiceModel.InvoiceHeader>();
+        List<InvoiceModel.InvoiceItem> ListInvoiceItem = new List<InvoiceModel.InvoiceItem>();
+        InvoiceEntity GetDataInvoice = new InvoiceEntity();
+        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Page.Header.DataBind();
+
+            if (!Page.IsPostBack)
+            {
+                //set autorization page
+                UserProfile.SetAuthorization(new string[] { UserProfile.USER_INTERNAL });
+
+                //set sp3m id and sp3m number
+                hfInvoiceID.Value = (string)Request.QueryString["Invoice_ID"] ?? "0";
+                hfStatus.Value = string.IsNullOrEmpty((string)Request.QueryString["Status"]) ? string.Empty : Request.QueryString["Status"].ToUpper();
+                
+                //set data on load
+                SetDataOnoad(Convert.ToInt32(hfInvoiceID.Value));                
+            }
+        }
+
+        protected void SetEnabled(bool Enable)
+        {
+            if (Enable)
+            {
+                txtInvoiceNumber.ClientEnabled = true;
+                dateInvoice.ClientEnabled = true;
+                txtNote.ClientEnabled = true;
+                txtApproveBy.ClientEnabled = true;
+                gridInvoiceItem.Enabled = true;
+                gridInvoiceItem.Columns["CmdInvoiceItem"].Visible = true;
+                btnAdd.ClientEnabled = true;
+                btnSaveHeader.ClientEnabled = true;
+                btnSave.ClientVisible = true;
+                btnSubmit.ClientVisible = true;
+                btnClose.ClientVisible = true;
+            }
+            else
+            {
+                txtInvoiceNumber.ClientEnabled = false;
+                dateInvoice.ClientEnabled = false;
+                txtNote.ClientEnabled = false;
+                txtApproveBy.ClientEnabled = false;
+                gridInvoiceItem.Enabled = false;
+                gridInvoiceItem.Columns["CmdInvoiceItem"].Visible = false;
+                btnAdd.ClientEnabled = false;
+                btnSaveHeader.ClientEnabled = false;
+                btnSave.ClientVisible = false;
+                btnSubmit.ClientVisible = false;
+                btnClose.ClientVisible = true;
+            }
+        }
+
+        protected void SetEnabledButton(List<MasterDataModel.MasterDataRole> Roles, string Status)
+        {
+            foreach (MasterDataModel.MasterDataRole role in Roles)
+            {
+                if ((role.RoleName == UserProfile.USER_INTERNAL && Status.Contains("SAVED")) 
+                    || (hfInvoiceID.Value == "0" && string.IsNullOrEmpty(hfStatus.Value.ToString())))
+                {
+                    btnAdd.ClientVisible = true;
+                    btnSaveHeader.ClientVisible = true;
+                    btnSave.ClientVisible = true;
+                    btnSubmit.ClientVisible = true;
+                    return;
+                }                
+                else
+                {
+                    btnAdd.ClientVisible = false;
+                    btnSaveHeader.ClientVisible = false;
+                    btnSave.ClientVisible = false;
+                    btnSubmit.ClientVisible = false;
+                }
+            }
+        }
+
+        protected void SetDataOnoad(int Invoice_ID)
+        {
+            //set data invoice by invoice id
+            ListInvoice = GetDataInvoice.GetInvoice_Header(Invoice_ID);
+            foreach(InvoiceModel.InvoiceHeader item in ListInvoice)
+            {
+                txtInvoiceNumber.Text = item.InvoiceNumber;
+                txtApproveBy.Text = item.ApproveBy ?? string.Empty;
+                txtNote.Text = item.Note ?? string.Empty;
+                
+                if (item.InvoiceDate != DateTime.Parse("1/1/1900"))
+                    dateInvoice.Value = item.InvoiceDate;
+                else
+                    dateInvoice.Value = null;
+
+                break;
+            }
+
+            //set gridview LO as Invoice Item
+            gridInvoiceItem.DataBind();
+
+            //set sp3m is editable
+            if (hfStatus.Value.ToString().Contains("SAVED"))
+            {
+                SetEnabled(true);
+                SetEnabledButton(UserProfile.Roles, hfStatus.Value.ToString());
+            }
+            else
+            {
+                //new entry
+                if (Convert.ToInt32(hfInvoiceID.Value.ToString()) == 0)
+                {
+                    SetEnabled(true);
+                    SetEnabledButton(UserProfile.Roles, hfStatus.Value.ToString());
+                }
+                else
+                {
+                    SetEnabled(false);
+                    SetEnabledButton(UserProfile.Roles, hfStatus.Value.ToString());
+                }
+            }
+
+        }
+
+        protected List<InvoiceModel.InvoiceItem> GetDatainvoiceItem()
+        {
+            ListInvoiceItem = DbTransaction.DbToList<InvoiceModel.InvoiceItem>("dbo.sp_GetInvoice_Items", new { Invoice_ID = Convert.ToInt32(hfInvoiceID.Value) }, true);                
+            return ListInvoiceItem;
+        }
+        
+        protected void btnSaveHeader_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtInvoiceNumber.Text)
+                || string.IsNullOrEmpty(dateInvoice.Text))
+            {
+                alert.MessageString(Alert.WARNING, "Simpan Invoice", "Please Input Mandatory Fields", Page, GetType());
+                return;
+            }
+
+            try
+            {
+                ResponseQuery = DbTransaction.DbToString("dbo.sp_AddInvoice_Header", new { 
+                    Type = 0,
+                    InvoiceNumber = txtInvoiceNumber.Text,
+                    InvoiceDate = dateInvoice.Text,
+                    ApproveBy = txtApproveBy.Text,
+                    Note = txtNote.Text,
+                    Status = 1,
+                    Username = UserProfile.Username,
+                    InvoiceId = 0
+                }, true);
+
+                //show notification
+                if (ResponseQuery.Contains("Success"))
+                    alert.MessageString(Alert.SUCCESS, "Simpan Invoice", ResponseQuery, this.Page, GetType());
+                else
+                    alert.MessageString(Alert.WARNING, "Simpan Invoice", ResponseQuery, this.Page, GetType());
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Simpan Invoice", ex.Message, this.Page, GetType());
+            }
+        }
+
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //initialize invoice item
+                string InvoiceItem = string.Empty;
+                ListInvoiceItem = GetDatainvoiceItem();
+
+                //warning if invoice item is empty
+                if (GetDatainvoiceItem().Count == 0)
+                {
+                    alert.MessageString(Alert.WARNING, "Simpan Invoice", "Data Invoice Item belum diinput", this.Page, GetType());
+                    return;
+                }
+
+                //get data invoice item
+                foreach (InvoiceModel.InvoiceItem item in ListInvoiceItem)
+                {
+                    InvoiceItem += string.Format("{0}|", item.LO_ID);
+                }
+
+                //set product item
+                if (!string.IsNullOrEmpty(InvoiceItem))
+                    InvoiceItem = InvoiceItem.Remove(InvoiceItem.Length - 1);
+
+                //insert data to database
+                ResponseQuery = DbTransaction.DbToString("dbo.sp_AddInvoice", new
+                {
+                    Type = 0
+                    ,InvoiceNumber = txtInvoiceNumber.Text
+                    ,ApproveBy = txtApproveBy.Text ?? string.Empty
+                    ,InvoiceDate = dateInvoice.Text ?? string.Empty
+                    ,Note = txtNote.Text ?? string.Empty
+                    ,Status = 1
+                    ,Userlogin = UserProfile.Username
+                    ,InvoiceItem = InvoiceItem
+                }, true);
+
+                //show notification
+                if (ResponseQuery.Contains("Success"))
+                    alert.MessageString(Alert.SUCCESS, "Simpan Invoice", ResponseQuery, this.Page, GetType());
+                else
+                    alert.MessageString(Alert.WARNING, "Simpan Invoice", ResponseQuery, this.Page, GetType());
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, "Simpan Invoice", ex.Message, Page, GetType());
+            }
+
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //insert data to database
+                ResponseQuery = DbTransaction.DbToString("dbo.sp_SubmitInvoice", new
+                {
+                    Invoice_ID = hfInvoiceID.Value
+                    ,Invoice_No = txtInvoiceNumber.Text
+                    ,Userlogin = UserProfile.Username
+                }, true);
+
+                //show notification
+                if (ResponseQuery.Contains("Success"))
+                {
+                    alert.MessageString(Alert.SUCCESS, "Submit Invoice Item", ResponseQuery, this.Page, GetType());
+                    hfStatus.Value = "Submit";
+                    SetDataOnoad(Convert.ToInt32(hfInvoiceID.Value));      
+                }
+                else
+                    alert.MessageString(Alert.WARNING, "Submit Invoice Item", ResponseQuery, this.Page, GetType());
+            }
+            catch(Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, ex.Message, Page, GetType());
+            }
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/ListInvoice.aspx", false);
+        }        
+
+        protected void gridInvoiceItem_DataBinding(object sender, EventArgs e)
+        {
+            gridInvoiceItem.DataSource = GetDatainvoiceItem();
+        }
+            
+        protected void gridAddLO_CustomCallback(object sender, DevExpress.Web.ASPxGridViewCustomCallbackEventArgs e)
+        {
+            if (e.Parameters == "Checked")
+            {
+                //initialize variable
+                string InvoiceItem = string.Empty;
+                string NoLO = string.Empty;
+                float? Product_ID;
+                string ProductName = string.Empty;
+                float? QuantityVolume;
+                float? PriceUnit;
+                List<Object> SelectItems = gridAddLO.GetSelectedFieldValues("LO_ID");
+                foreach (object item in SelectItems)
+                {
+                    //set item selected
+                    NoLO = gridAddLO.GetRowValuesByKeyValue(item, "NoLO").ToString();
+                    Product_ID = Convert.ToInt16(gridAddLO.GetRowValuesByKeyValue(item, "Product_ID").ToString());
+                    ProductName = gridAddLO.GetRowValuesByKeyValue(item, "ProductName").ToString();
+                    QuantityVolume = Convert.ToInt16(gridAddLO.GetRowValuesByKeyValue(item, "QuantityVolume").ToString());
+                    PriceUnit = Convert.ToInt16(gridAddLO.GetRowValuesByKeyValue(item, "PriceUnit").ToString());
+
+                    //add data to list
+                    ListInvoiceItem.Add(new InvoiceModel.InvoiceItem
+                    {
+                        LO_ID = Convert.ToInt16(item),
+                        NoLO = NoLO,
+                        Product_ID = Convert.ToInt16(Product_ID),
+                        ProductName = ProductName,
+                        QuantityVolume = Convert.ToInt16(QuantityVolume),
+                        PriceUnit = Convert.ToInt16(PriceUnit)
+                    });
+
+                    //concatenate data LO
+                    InvoiceItem += string.Format("{0}|", item);
+                }
+
+                //set product item
+                if (!string.IsNullOrEmpty(InvoiceItem))
+                    InvoiceItem = InvoiceItem.Remove(InvoiceItem.Length - 1);
+
+                //insert data to database
+                ResponseQuery = DbTransaction.DbToString("dbo.sp_AddInvoice", new
+                {
+                    Type = 0
+                    ,InvoiceNumber = txtInvoiceNumber.Text
+                    ,ApproveBy = txtApproveBy.Text ?? string.Empty
+                    ,InvoiceDate = dateInvoice.Text ?? string.Empty
+                    ,Note = txtNote.Text ?? string.Empty
+                    ,Status = 1
+                    ,Userlogin = UserProfile.Username
+                    ,InvoiceItem = InvoiceItem
+                }, true);
+
+                //show notification
+                if (ResponseQuery.Contains("Success"))
+                    alert.MessageString(Alert.SUCCESS, "Simpan Invoice", ResponseQuery, this.Page, GetType());
+                else
+                    alert.MessageString(Alert.WARNING, "Simpan Invoice", ResponseQuery, this.Page, GetType());
+
+                //set grid LO or invoice item
+                gridInvoiceItem.DataBind();
+            }
+        }
+        
+        protected void popupAddLO_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                //gridAddLO.DataSource = GetDataInvoice.GetLO_ToInvoice();
+                gridAddLO.DataBind();                
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, ex.Message, Page, GetType());
+            }
+        }
+
+        protected void gridInvoiceItem_RowDeleting(object sender, DevExpress.Web.Data.ASPxDataDeletingEventArgs e)
+        {
+            try
+            {
+                int key = Convert.ToInt16(e.Keys[0]);
+                BootstrapPopupControl popup = popupAddLO;
+                BootstrapGridView grid = (BootstrapGridView)popup.FindControl("gridAddLO");
+
+                //execute data to database
+                ResponseQuery = DbTransaction.DbToString("dbo.sp_DeleteInvoice_Item", new
+                {
+                    Invoice_ID = hfInvoiceID.Value,
+                    LO_ID = key,
+                    userlogin = UserProfile.Username
+                }, true);
+                
+                //set gridview invoice item
+                e.Cancel = true;
+                gridInvoiceItem.DataBind();
+
+                //show notification
+                if (ResponseQuery.Contains("Success"))
+                    alert.MessageString(Alert.SUCCESS, "Delete Invoice Item", ResponseQuery, this.Page, GetType());
+                else
+                    alert.MessageString(Alert.WARNING, "Delete Invoice Item", ResponseQuery, this.Page, GetType());
+            }
+            catch(Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, ex.Message, Page, GetType());
+            }
+        }
+     
+        protected void gridAddLO_DataBinding(object sender, EventArgs e)
+        {
+            gridAddLO.DataSource = GetDataInvoice.GetLO_ToInvoice();
+            ListInvoiceItem = GetDatainvoiceItem();   
+         
+            foreach (InvoiceModel.InvoiceItem item in ListInvoiceItem)
+            {
+                if (ListInvoiceItem.FirstOrDefault() == item)
+                    gridAddLO.Selection.UnselectAll();
+
+                gridAddLO.Selection.SelectRowByKey(item.LO_ID);
+            }
+        }
+        
+        protected void popupAddLO_Callback(object sender, CallbackEventArgsBase e)
+        {           
+            try
+            {
+                 if(e.Parameter=="Load")
+                 {
+                     gridAddLO.DataBind();
+                 }
+                
+            }
+            catch (Exception ex)
+            {
+                alert.MessageString(Alert.ERROR, ex.Message, Page, GetType());
+            }
+        }
+
+    }
+}

@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FrancoHandling_Lib.Model
+{
+    public class LOModel
+    {
+        public class LOList
+        {
+            public Int64 SPPB_ID { get; set; }
+            public string NoSPP { get; set; }
+            public string NoLO { get; set; }
+            public int TBBM_ID { get; set; }
+            public string TBBMName { get; set; }
+            public int SPSH_ID { get; set; }
+            public string SPSHName { get; set; }
+            public Int64 Item_ID { get; set; }
+            public string ItemDesc { get; set; }
+            public int QuantityVolume { get; set; }
+            
+        }
+
+        public class LO
+        {
+            public Int64 LO_ID { get; set; }
+            public Int64 SPP_Items_ID { get; set; }
+            public string NoLO { get; set; }
+            public DateTime LODate { get; set; }
+            public string NoDO { get; set; }
+            public DateTime DODate { get; set; }
+            public string DeliveryNote { get; set; }
+            public string CustomerPO_Number { get; set; }
+            public DateTime CustomerDate { get; set; }
+            public string OrderNumber { get; set; }
+            public DateTime OrderDate { get; set; }
+            public int QuantityVolume { get; set; }
+            public float PriceUnit { get; set; }
+            public float SubTotal { get; set; }
+            public int Transporter_ID { get; set; }
+            public int Vehicle_ID { get; set; }
+            public int Type_ID { get; set; }
+            public int Driver_ID { get; set; }
+            public DateTime CreationDate { get; set; }
+            public string CreationBy { get; set; }
+            public DateTime UpdateDate { get; set; }
+            public string UpdateBy { get; set; }
+
+        }
+
+        public class LOItem
+        {
+            public int LO_ID { get; set; }
+            public string NoLO { get; set; }
+            public string NoDO { get; set; }
+            public string DoDate { get; set; }
+            public int Product_ID { get; set; }
+            public string ProductName { get; set; }
+            public float QuantityVolume { get; set; }
+            public float PriceUnit { get; set; }
+            public float SubTotal { get; set; }
+        }
+    }
+}

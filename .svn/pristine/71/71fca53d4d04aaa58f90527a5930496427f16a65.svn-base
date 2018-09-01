@@ -1,0 +1,133 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using FrancoHandling_Lib;
+using FrancoHandling_Lib.Model;
+using DevExpress.Web.Bootstrap;
+using DevExpress.Web;
+
+namespace FrancoHandling_App.Pages
+{
+    public partial class ListInvoicePertamina : System.Web.UI.Page
+    {
+        Alert alert = new Alert();
+        string ResponseQuery = string.Empty;
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+             Page.Header.DataBind();
+
+             if (!Page.IsPostBack)
+             {
+                 //set autorization page
+                 UserProfile.SetAuthorization(new string[] { UserProfile.USER_INTERNAL });
+
+                 //ser gridview invoice
+                 gridListInvoice.DataBind();
+             }
+        }
+
+        protected List<InvoiceModel.InvoiceHeader> GetInvoice()
+        {
+            return DbTransaction.DbToList<InvoiceModel.InvoiceHeader>("dbo.sp_GetInvoicePertamina", true);
+        }
+
+        protected void gridListInvoice_DataBinding(object sender, EventArgs e)
+        {
+            gridListInvoice.DataSource = GetInvoice();
+        }
+
+        protected void gridListInvoice_CustomCallback(object sender, DevExpress.Web.ASPxGridViewCustomCallbackEventArgs e)
+        {
+            if (e.Parameters != null)
+            {
+                string[] arrParam = e.Parameters.Split('|');
+                if (arrParam[0] == "Process")
+                {
+                    //set value
+                    string key = arrParam[1];
+                    object rownumber = gridListInvoice.GetSelectedFieldValues("Invoice_ID");
+                    string invoicenumber = gridListInvoice.GetRowValuesByKeyValue(key, "InvoiceNumber").ToString();
+
+                    //execute data to database
+                    ResponseQuery = DbTransaction.DbToString("dbo.sp_SubmitInvoicePertamina", new
+                    {
+                        Invoice_ID = key,
+                        Invoice_No = invoicenumber,
+                        userlogin = UserProfile.Username
+                    }, true);
+
+                    //show notification
+                    if (ResponseQuery.Contains("Success"))
+                        alert.MessageString(Alert.SUCCESS, "Simpan Invoice", ResponseQuery, this.Page, GetType());
+                    else
+                        alert.MessageString(Alert.WARNING, "Simpan Invoice", ResponseQuery, this.Page, GetType());
+
+                    //set grid LO or invoice item
+                    gridListInvoice.DataBind();
+
+                }
+            }
+        }
+
+        protected void gridListInvoice_CommandButtonInitialize(object sender, BootstrapGridViewCommandButtonEventArgs e)
+        {
+            if (e.VisibleIndex == -1)
+                return;
+
+            if (e.ButtonType == ColumnCommandButtonType.Select)
+                e.Visible = DeleteButtonVisibleCriteria((ASPxGridView)sender, e.VisibleIndex);
+        }
+
+        private bool DeleteButtonVisibleCriteria(ASPxGridView grid, int visibleIndex)
+        {
+            object row = grid.GetRow(visibleIndex);
+            return ((InvoiceModel.InvoiceHeader)(row)).StatusDesc.ToString().ToUpper().Contains("SUBMIT");
+        }
+
+        protected void gridInvoiceItem_DataBinding(object sender, EventArgs e)
+        {
+            //initialize parameter
+            BootstrapGridView grid = (BootstrapGridView)sender;
+            List<InvoiceModel.InvoiceItem> ListInvoiceItem = new List<InvoiceModel.InvoiceItem>();
+            int InvoiceItemId = Convert.ToInt32(Session["InvoiceItem_ID"] ?? 0);
+
+            //set datagrid detail
+            ListInvoiceItem = DbTransaction.DbToList<InvoiceModel.InvoiceItem>("dbo.sp_GetInvoice_Items", new { Invoice_ID = InvoiceItemId }, true);
+            grid.DataSource = ListInvoiceItem;
+
+        }
+
+        protected void gridInvoiceItem_BeforePerformDataSelect(object sender, EventArgs e)
+        {            
+            Session["InvoiceItem_ID"] = (sender as BootstrapGridView).GetMasterRowKeyValue();
+        }
+
+        protected void gridListInvoice_DetailRowExpandedChanged(object sender, ASPxGridViewDetailRowEventArgs e)
+        {
+            //initialize control
+            BootstrapGridView grid = (BootstrapGridView)sender;
+            BootstrapTextBox txtInvoiceNumber = (BootstrapTextBox)grid.FindDetailRowTemplateControl(e.VisibleIndex, "txtInvoiceNumber");
+            BootstrapTextBox txtApproveBy = (BootstrapTextBox)grid.FindDetailRowTemplateControl(e.VisibleIndex, "txtApproveBy");
+            BootstrapDateEdit dateInvoice = (BootstrapDateEdit)grid.FindDetailRowTemplateControl(e.VisibleIndex, "dateInvoice");
+            BootstrapMemo txtNote = (BootstrapMemo)grid.FindDetailRowTemplateControl(e.VisibleIndex, "txtNote");
+
+            //bind control
+            if (txtInvoiceNumber == null)
+                return;
+
+            txtInvoiceNumber.Text = grid.GetRowValues(e.VisibleIndex, "InvoiceNumber").ToString();
+            txtApproveBy.Text = grid.GetRowValues(e.VisibleIndex, "ApproveBy") != null ? grid.GetRowValues(e.VisibleIndex, "ApproveBy").ToString() : string.Empty;
+            txtNote.Text = grid.GetRowValues(e.VisibleIndex, "Note") != null ? grid.GetRowValues(e.VisibleIndex, "Note").ToString() : string.Empty;
+            DateTime InvoiceDate = Convert.ToDateTime(grid.GetRowValues(e.VisibleIndex, "InvoiceDate"));
+            if (InvoiceDate != DateTime.Parse("1/1/1900"))
+                dateInvoice.Value = InvoiceDate;
+            else
+                dateInvoice.Value = null;
+        }
+    }
+}
